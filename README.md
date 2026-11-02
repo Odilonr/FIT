@@ -42,6 +42,8 @@ Because it learns from skill combinations instead of specific pairs, FIT can est
 
 Two interactive dashboards built from the cleaned data: 592 games from Oct 21, 2025 to Jan 18, 2026. They are a side product of the pipeline, not part of the FIT model.
 
+**[View the live dashboards on Tableau Public](https://public.tableau.com/app/profile/odilon.rwabukamba/viz/FITNBAshotsandLineups/Shots)**
+
 **Who gets good shots, and who makes them?** Each dot is a player with at least 300 shots. Further right means better shot locations, and higher means scoring more than the league does from those same zones.
 
 ![Shots dashboard](images/shots_dashboard.png)
