@@ -38,10 +38,29 @@ Because it learns from skill combinations instead of specific pairs, FIT can est
 
 **How I'll know if it works:** train on past seasons, predict the next one, and compare against plain RAPM and public metrics on the same games. If a layer doesn't improve out-of-sample predictions, it doesn't make it into FIT.
 
+## Tableau dashboards
+
+Two interactive dashboards built from the cleaned data: 592 games from Oct 21, 2025 to Jan 18, 2026. They are a side product of the pipeline, not part of the FIT model.
+
+**Who gets good shots, and who makes them?** Each dot is a player with at least 300 shots. Further right means better shot locations, and higher means scoring more than the league does from those same zones.
+
+![Shots dashboard](images/shots_dashboard.png)
+
+Clicking a dot filters the shot chart to that player. Red areas are better than the league average from that zone, and blue areas are worse.
+
+![Shots dashboard filtered to Nikola Jokić](images/shots_dashboard_jokic.png)
+
+**Which five-man lineups work best?** Lineups with at least 100 minutes, ranked by net rating, without garbage time. You can filter by team, change the minimum minutes, or search for a player.
+
+![Lineups dashboard](images/lineups_dashboard.png)
+
+Expected points use shot zone only, so they ignore defenders and free throws. Small lineup samples are noisy. Most lineups were rebuilt from play-by-play, and in a test on 85 games they matched official lineups for 99.5% of playing time.
+
 ## What's in the repo
 
 - `01_pull_and_clean.ipynb`: downloads a season and turns it into clean stints. Every game is checked three ways: the points add up to the official final score, every stint has exactly 5 players per team, and the stints cover the whole game. Games that fail are saved to `data/bad_games.csv` and left out.
 - `02_baseline_rapm.ipynb`: offense and defense RAPM with ridge regression, weighted by possessions, with the penalty picked by cross-validation split by game.
+- `03_tableau_export.ipynb`: builds the shot and lineup files for the Tableau dashboards. It only uses games that passed every check.
 
 ## How to run it
 
